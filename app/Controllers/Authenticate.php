@@ -2,18 +2,19 @@
 
 namespace App\Controllers;
 
-use App\Models\Users;
+use App\Models\Users_model;
 
-class C_auth extends BaseController
+class Authenticate extends BaseController
 {
 	public function login()
 	{
-		return view('auth/v_login');
+        $data['title'] = 'Login - POS';
+		return view('auth/v_login', $data);
 	}
 
     public function authenticate()
     {
-        $model = new Users();
+        $model = new Users_model();
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
         $data = $model->where(['username' => $username])->first();
@@ -47,7 +48,8 @@ class C_auth extends BaseController
 
     public function register()
     {
-        return view('auth/v_register');
+        $data['title'] = 'Register - POS';
+        return view('auth/v_register', $data);
     }
 
     public function proses_register()
@@ -61,7 +63,7 @@ class C_auth extends BaseController
 
         if($this->validate($rules))
         {
-            $model = new Users();
+            $model = new Users_model();
             $data = [
                 'username' => $this->request->getVar('username'),
                 'email' => $this->request->getVar('email'),

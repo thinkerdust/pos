@@ -18,7 +18,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('C_auth');
+$routes->setDefaultController('Authenticate');
 $routes->setDefaultMethod('login');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -32,15 +32,17 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'C_auth::login');
-$routes->get('/login', 'C_auth::login');
-$routes->get('/logout', 'C_auth::logout');
-$routes->post('/authenticate', 'C_auth::authenticate');
-$routes->get('/register', 'C_auth::register');
-$routes->post('/proses_register', 'C_auth::proses_register');
+$routes->get('/', 'Authenticate::login');
+$routes->get('/login', 'Authenticate::login');
+$routes->get('/logout', 'Authenticate::logout');
+$routes->post('/authenticate', 'Authenticate::authenticate');
+$routes->get('/register', 'Authenticate::register');
+$routes->post('/proses_register', 'Authenticate::proses_register');
 
 $routes->group('admin', ['filter' => 'auth'], function($routes) {
-	$routes->get('dashboard', 'C_dashboard::index');
+	$routes->get('dashboard', 'Dashboard::index');
+	$routes->get('category', 'Category::index');
+	$routes->post('category-ajax-data', 'Category::ajax_load_data');
 });
 
 /*

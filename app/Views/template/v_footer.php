@@ -11,16 +11,20 @@
 
 <!-- General JS Scripts -->
 <script src="<?php echo base_url('assets/jquery/jquery.min.js')?>"></script>
+<script src="<?php echo base_url('assets/js/plugins/popper.min.js')?>"></script>
 <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
 <script src="<?php echo base_url('assets/js/plugins/jquery.nicescroll.min.js')?>"></script>
 <script src="<?php echo base_url('assets/js/plugins/moment.min.js')?>"></script>
 <script src="<?php echo base_url('assets/js/stisla.js') ?>"></script>
 
 <!-- JS Libraies -->
+<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap4.min.js')?>"></script>
 
 <!-- Template JS File -->
 <script src="<?php echo base_url('assets/js/scripts.js')?>"></script>
 <script src="<?php echo base_url('assets/js/custom.js')?>"></script>
+<script src="<?php echo base_url('assets/apps/js/script.js')?>"></script>
 
 <!-- Page Specific JS File -->
 </body>
