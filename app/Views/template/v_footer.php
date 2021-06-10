@@ -20,6 +20,8 @@
 <!-- JS Libraies -->
 <script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
 <script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap4.min.js')?>"></script>
+<script src="<?php echo base_url('assets/sweetalert2/dist/sweetalert2.min.js')?>"></script>
+<script src="<?php echo base_url('assets/select2/js/select2.min.js')?>"></script>
 
 <!-- Template JS File -->
 <script src="<?php echo base_url('assets/js/scripts.js')?>"></script>

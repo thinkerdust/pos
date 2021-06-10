@@ -41,8 +41,18 @@ $routes->post('/proses_register', 'Authenticate::proses_register');
 
 $routes->group('admin', ['filter' => 'auth'], function($routes) {
 	$routes->get('dashboard', 'Dashboard::index');
+	// category
 	$routes->get('category', 'Category::index');
-	$routes->post('category-ajax-data', 'Category::ajax_load_data');
+	$routes->post('category/get-data-ajax', 'Category::ajax_load_data');
+	$routes->post('category/store', 'Category::store');
+	$routes->get('category/edit/(:num)', 'Category::edit/$1');
+	$routes->post('category/update/(:num)', 'Category::update/$1');
+	$routes->get('category/delete/(:num)', 'Category::delete/$1');
+	// product
+	$routes->get('product', 'Product::index');
+	$routes->post('product/get-data-ajax', 'Product::ajax_load_data');
+	$routes->post('product/store', 'Product::store');
+	$routes->get('product/edit/(:num)', 'Product::edit/$1');
 });
 
 /*

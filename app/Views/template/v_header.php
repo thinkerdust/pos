@@ -6,11 +6,13 @@
   <title>Point Of Sales</title>
 
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" >
+  <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/fontawesome/css/all.min.css')?>">
 
   <!-- CSS Libraries -->
-<link rel="stylesheet" href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap4.min.css')?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap4.min.css')?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/sweetalert2/dist/sweetalert2.css') ?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/select2/css/select2.min.css')?>">
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css') ?>">
@@ -21,7 +23,10 @@
   <div id="app">
     <div class="main-wrapper main-wrapper-1">
       <div class="navbar-bg"></div>
-      <nav class="navbar navbar-expand-lg main-navbar justify-content-end">
+      <nav class="navbar navbar-expand-lg main-navbar">
+        <ul class="navbar-nav mr-auto">
+          <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+        </ul>
         <ul class="navbar-nav navbar-right">
           <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
@@ -98,12 +103,12 @@
               </div>
               <div class="dropdown-list-content dropdown-list-icons">
                 <a href="#" class="dropdown-item dropdown-item-unread">
-                  <div class="dropdown-item-icon bg-primary text-white">
+                  <div class="dropdown-item-icon bg-success text-white">
                     <i class="fas fa-code"></i>
                   </div>
                   <div class="dropdown-item-desc">
                     Template update is available now!
-                    <div class="time text-primary">2 Min Ago</div>
+                    <div class="time text-success">2 Min Ago</div>
                   </div>
                 </a>
                 <a href="#" class="dropdown-item">

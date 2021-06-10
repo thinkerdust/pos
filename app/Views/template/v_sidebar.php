@@ -1,10 +1,10 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
-        <a href="index.html">Stisla</a>
+        <a href="dashboard">Point Of Sale</a>
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
-        <a href="index.html">St</a>
+        <a href="dashboard">POS</a>
       </div>
       <ul class="sidebar-menu">
           <li class="nav-item dropdown <?php echo ($sidebar == 'dashboard') ? 'active':'' ;?>">
@@ -18,7 +18,7 @@
             <a class="nav-link" href="category"><i class="fas fa-tags"></i><span>Management Category</span></a>
           </li>
           <li class="<?php echo ($sidebar == 'product') ? 'active':'' ;?>">
-            <a class="nav-link" href="blank.html"><i class="fas fa-shopping-cart"></i><span>Management Product</span></a>
+            <a class="nav-link" href="product"><i class="fas fa-shopping-cart"></i><span>Management Product</span></a>
           </li>
           <li class="<?php echo ($sidebar == 'transaction') ? 'active':'' ;?>">
             <a class="nav-link" href="blank.html"><i class="fas fa-hand-holding-usd"></i><span>Transaction</span></a>
