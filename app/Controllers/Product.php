@@ -70,7 +70,9 @@ class Product extends BaseController
 						<a href="#" class="btn btn-danger btn-sm" title="hapus" onclick="deleteProduct('.$key->product_id.')"><i class="fas fa-trash"></i></a>';
 
                 $link_img = base_url('uploads/'.$key->product_image);
-                $thumbnail = '<img src="'.$link_img.'" class="rounded-circle" width="80" height="80">';
+                $thumbnail = '<a href="#" onclick="zoomImg(\''. $link_img . '\')">
+                                <img src="'.$link_img.'" class="rounded-circle" width="80" height="80">
+                            </a>';
 
 				$row = array();
 				$row[] = $no;

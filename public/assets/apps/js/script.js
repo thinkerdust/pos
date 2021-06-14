@@ -27,6 +27,12 @@ function formatRupiah(angka,prefix){
   return prefix == undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
 };
 
+// onchange file upload
+$(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+
 // Category
 const TableCategory = $("#tb_category").DataTable({
     bProcessing: true,
@@ -198,6 +204,7 @@ const TableProduct = $("#tb_product").DataTable({
 function addProduct(){
     $('#mdladdproduct').modal({show:true, backdrop: 'static'});
     $('#mdlproducttitle').text('Add Product');
+    $('#preview_image').attr('src', "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.png")
 }
 
 function editProduct(id){
@@ -209,12 +216,12 @@ function editProduct(id){
         type: 'get',
         dataType: 'json',
         success: function(data){
-            console.log(data);
             $('#pro_category').val(data['category_id']).change();
             $('#pro_name').val(data['product_name']);
             $('#pro_price').val('Rp. ' +  new Intl.NumberFormat(['ban', 'id']).format(data['product_price']));
             $('#pro_sku').val(data['product_sku']);
             $('#pro_desc').val(data['product_description']);
+            $('#preview_image').attr('src', base_url+'/uploads/'+data['product_image']);
             if(data['product_status'] === 'Active'){
                 $('#pro_status1').prop('checked', true);
             }else{
@@ -269,4 +276,11 @@ $("#formProduct").submit(function (event) {
           })
         }
     });
-  });
+});
+
+// zoom img
+function zoomImg(url)
+{
+    $('.fullimage').attr('src', url);
+    $('#modalimage').modal('show'); 
+}

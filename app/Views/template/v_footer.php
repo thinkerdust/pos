@@ -9,6 +9,8 @@
     </div>
 </div>
 
+<script type="text/javascript"> const base_url = "<?php echo base_url ()?>"; </script>
+
 <!-- General JS Scripts -->
 <script src="<?php echo base_url('assets/jquery/jquery.min.js')?>"></script>
 <script src="<?php echo base_url('assets/js/plugins/popper.min.js')?>"></script>

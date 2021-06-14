@@ -42,7 +42,7 @@
   </div>
   <!-- end: Main Content -->
 
-  <!-- modal -->
+  <!-- modal: add product -->
   <div class="modal fade" id="mdladdproduct" tabindex="-1" role="dialog" aria-labelledby="mdlproducttitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
@@ -89,13 +89,14 @@
             <div class="form-group row">
               <label for="inputPassword3" class="col-sm-3 col-form-label">Image Product</label>
               <div class="col-sm-9">
+                <img id="preview_image" src="" style="height:150px"><br><br>
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" id="pro_image" name="product_image" accept=".png,.jpg,.jpeg"  required="">
                   <label class="custom-file-label" for="customFile">Choose file</label>
-                  <span class="text-muted">Max. file 2Mb</span>
+                  <span class="text-muted">Max. file 2Mb | Kosongi jika tidak ingin mengganti</span>
                 </div>
               </div>
-            </div>
+					  </div>
             <fieldset class="form-group">
               <div class="row">
                 <div class="col-form-label col-sm-3 pt-0">Status</div>
@@ -125,5 +126,20 @@
       </div>
     </div>
   </div>
+  <!-- end: modal -->
+
+  <!-- modal: preview image -->
+  <div class="modal fade" id="modalimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	    <div class="modal-header">
+	    	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	    </div>
+      	<div class="modal-body">
+        	<img src="" class="fullimage" style="width: 100%;" >
+      	</div>
+	    </div>
+	  </div>
+	</div>
   <!-- end: modal -->
 <?php echo view('template/v_footer') ?>
