@@ -41,6 +41,7 @@ $routes->post('/proses_register', 'Authenticate::proses_register');
 
 $routes->group('admin', ['filter' => 'auth'], function($routes) {
 	$routes->get('dashboard', 'Dashboard::index');
+	$routes->get('dashboard/get-chart', 'Dashboard::get_chart_json');
 	// category
 	$routes->get('category', 'Category::index');
 	$routes->post('category/get-data-ajax', 'Category::ajax_load_data');
@@ -53,6 +54,13 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
 	$routes->post('product/get-data-ajax', 'Product::ajax_load_data');
 	$routes->post('product/store', 'Product::store');
 	$routes->get('product/edit/(:num)', 'Product::edit/$1');
+	$routes->get('product/delete/(:num)', 'Product::delete/$1');
+	// transaction
+	$routes->get('transaction', 'Transaction::index');
+	$routes->post('transaction/get-data-ajax', 'Transaction::ajax_load_data');
+	$routes->post('transaction/store', 'Transaction::store');
+	$routes->get('transaction/edit/(:num)', 'Transaction::edit/$1');
+	$routes->get('transaction/delete/(:num)', 'Transaction::delete/$1');
 });
 
 /*

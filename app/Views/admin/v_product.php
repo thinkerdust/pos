@@ -25,6 +25,7 @@
                         <th>Name</th>
                         <th>Category</th>
                         <th>Price</th>
+                        <th>Stock</th>
                         <th>Status</th>
                         <th>Action</th>
                       </tr>
@@ -74,10 +75,10 @@
                 <input type="text" class="form-control harga" id="pro_price" placeholder="Price Product" name="product_price" required="">
               </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row" id="form_pro_sku">
               <label for="inputPassword3" class="col-sm-3 col-form-label">SKU Product</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="pro_sku" placeholder="SKU Product" name="product_sku" required="">
+                <input type="text" class="form-control" id="pro_sku" name="product_sku" readonly>
               </div>
             </div>
             <div class="form-group row">
@@ -91,12 +92,18 @@
               <div class="col-sm-9">
                 <img id="preview_image" src="" style="height:150px"><br><br>
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="pro_image" name="product_image" accept=".png,.jpg,.jpeg"  required="">
+                  <input type="file" class="custom-file-input" id="image" name="product_image" accept=".png,.jpg,.jpeg">
                   <label class="custom-file-label" for="customFile">Choose file</label>
                   <span class="text-muted">Max. file 2Mb | Kosongi jika tidak ingin mengganti</span>
                 </div>
               </div>
 					  </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-3 col-form-label">Stock Product</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control number" id="pro_stock" name="product_stock" value="1" required>
+              </div>
+            </div>
             <fieldset class="form-group">
               <div class="row">
                 <div class="col-form-label col-sm-3 pt-0">Status</div>

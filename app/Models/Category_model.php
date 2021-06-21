@@ -11,9 +11,14 @@ class Category_model extends Model
     public function getCategory($id = false)
     {
         if($id === false){
-            return $this->findAll();
+            return $this->table('categories')
+                        ->join('ms_sku', 'categories.category_id = ms_sku.category_id')
+                        ->get();
         } else {
-            return $this->getWhere(['category_id' => $id]);
+            return $this->table('categories')
+                        ->join('ms_sku', 'categories.category_id = ms_sku.category_id')
+                        ->where('categories.category_id', $id)
+                        ->get();
         }   
     }
 

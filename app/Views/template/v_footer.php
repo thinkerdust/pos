@@ -22,13 +22,23 @@
 <!-- JS Libraies -->
 <script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
 <script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap4.min.js')?>"></script>
+<script src="<?php echo base_url('assets/datatables/button/js/dataTables.buttons.min.js')?>"></script>
+<script src="<?php echo base_url('assets/datatables/button/js/buttons.bootstrap4.min.js')?>"></script>
+<script src="<?php echo base_url('assets/datatables/button/js/jszip.min.js')?>"></script>
+<script src="<?php echo base_url('assets/datatables/button/js/pdfmake.min.js')?>"></script>
+<script src="<?php echo base_url('assets/datatables/button/js/vfs_fonts.js')?>"></script>
+<script src="<?php echo base_url('assets/datatables/button/js/buttons.html5.min.js')?>"></script>
+<script src="<?php echo base_url('assets/datatables/button/js/buttons.print.min.js')?>"></script>
+<script src="<?php echo base_url('assets/datatables/button/js/buttons.colVis.min.js')?>"></script>
 <script src="<?php echo base_url('assets/sweetalert2/dist/sweetalert2.min.js')?>"></script>
 <script src="<?php echo base_url('assets/select2/js/select2.min.js')?>"></script>
+<script src="<?php echo base_url('assets/chartjs/chart.js')?>"></script>
 
 <!-- Template JS File -->
 <script src="<?php echo base_url('assets/js/scripts.js')?>"></script>
 <script src="<?php echo base_url('assets/js/custom.js')?>"></script>
 <script src="<?php echo base_url('assets/apps/js/script.js')?>"></script>
+<?php echo (isset($js)) ? $js : '';?>
 
 <!-- Page Specific JS File -->
 </body>

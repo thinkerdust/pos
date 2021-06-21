@@ -44,6 +44,10 @@ class Products extends Migration
                 'constraint'        => '100',
                 'null'              => TRUE,
             ],
+            'product_stock'         => [
+                'type'              => 'INT',
+                'constraint'        => '11',
+            ],
             'product_description'   => [
                 'type'              => 'TEXT',
                 'null'              => TRUE,

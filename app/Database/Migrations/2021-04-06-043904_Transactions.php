@@ -29,6 +29,10 @@ class Transactions extends Migration
             'trx_date'              => [
                 'type'              => 'DATE'
             ],
+            'trx_qty'             => [
+                'type'              => 'INT',
+                'constraint'        => '11',
+            ],
         ]);
         $this->forge->addKey('trx_id', TRUE);
         $this->forge->addForeignKey('product_id','products','product_id','CASCADE','CASCADE');

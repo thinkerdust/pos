@@ -55,6 +55,12 @@
               <input type="text" class="form-control" id="cat_name" placeholder="Name Category">
             </div>
           </div>
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-3 col-form-label">Code Category</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="cat_code" placeholder="Code Category" style="text-transform:uppercase;">
+            </div>
+          </div>
           <fieldset class="form-group">
             <div class="row">
               <div class="col-form-label col-sm-3 pt-0">Status</div>

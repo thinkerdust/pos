@@ -4,14 +4,23 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\Category_model;
+use App\Models\Sku_model;
+use App\Models\Product_model;
+use App\Models\Transaction_model;
 
 class Category extends BaseController
 {
 	public $db;
+	protected $product;
 
 	public function __construct()
     {
         $this->db = \Config\Database::connect();
+		$this->product = new Product();
+		$this->category_model = new Category_model();
+		$this->sku_model = new Sku_model();
+		$this->product_model = new Product_model();
+		$this->transaction_model = new Transaction_model();
     }
 
 	public function index()
@@ -22,9 +31,6 @@ class Category extends BaseController
 
 	public function ajax_load_data()
 	{
-		// $model = new Category_model();
-		// $data['categories'] = $model->getCategory();
-
 		$params['draw'] = $_REQUEST['draw'];
         $start = $_REQUEST['start'];
         $length = $_REQUEST['length'];
@@ -80,47 +86,85 @@ class Category extends BaseController
 
 	public function store()
 	{
-		$data = array(
-			'category_name'     => $this->request->getPost('name'),
-			'category_status'   => $this->request->getPost('status'),
-		);
+		if ($this->request->isAJAX()) {
+
+			$this->db->transStart();
+
+			$data = array(
+				'category_name'     => $this->request->getPost('name'),
+				'category_status'   => $this->request->getPost('status'),
+			);
+		
+			$simpan = $this->category_model->insertCategory($data);
+			$lastId = $this->db->insertID();
 	
-		$model = new Category_model();
-		$simpan = $model->insertCategory($data);
-		if($simpan)
-		{
-			return json_encode(TRUE); 
+			$data_sku = array(
+				'category_id' 		=> $lastId,
+				'kode'				=> strtoupper($this->request->getPost('kode')),
+				'bulan' 			=> date('m'),
+				'tahun'				=> date('y'),
+				'counter'			=> 0
+			);
+	
+			$simpanSku = $this->sku_model->insertSku($data_sku);
+
+			$this->db->transComplete();
+	
+			if($simpan)
+			{
+				return json_encode(TRUE); 
+			}
 		}
 		return json_encode(FALSE);
 	}
 
 	public function edit($id)
 	{  
-		$model = new Category_model();
-		$data = $model->getCategory($id)->getRowArray();
+		$data = $this->category_model->getCategory($id)->getRowArray();
 		echo json_encode($data);
 	}
 
 	public function update($id)
-	{	
-		$data = array(
-			'category_name'     => $this->request->getPost('name'),
-			'category_status'   => $this->request->getPost('status'),
-		);
+	{
+		if ($this->request->isAJAX()) {
 
-		$model = new Category_model();
-		$ubah = $model->updateCategory($data, $id);
-		if($ubah)
-		{
-			return json_encode(TRUE); 
-		}
+			$this->db->transStart();
+
+			$data = array(
+				'category_name'     => $this->request->getPost('name'),
+				'category_status'   => $this->request->getPost('status'),
+			);
+	
+			$ubah = $this->category_model->updateCategory($data, $id);
+	
+			$data_sku = array(
+				'kode'				=> strtoupper($this->request->getPost('kode')),
+			);
+	
+			$ubah_sku = $this->sku_model->updateSku($data_sku, $id);
+
+			$this->db->transComplete();
+	
+			if($ubah)
+			{
+				return json_encode(TRUE); 
+			}
+		}	
 		return json_encode(FALSE); 
 	}
 
 	public function delete($id)
 	{
-		$model = new Category_model();
-		$hapus = $model->deleteCategory($id);
+		$this->db->transStart();
+		$hapus = $this->category_model->deleteCategory($id);
+		$this->sku_model->where('category_id', $id)->delete();
+		$product = $this->product_model->getWhere(['category_id', $id])->getRow();
+		if(!empty($product)){
+			$this->product->deleteImg($product->product_image);
+			$this->product_model->where('category_id', $id)->delete();
+			$this->transaction_model->where('product_id', $product->id)->delete();
+		}
+		$this->db->transComplete();
 		if($hapus)
 		{
 			return json_encode(TRUE);  
