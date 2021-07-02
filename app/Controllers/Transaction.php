@@ -21,7 +21,6 @@ class Transaction extends BaseController
 	{
 		$data['sidebar'] = 'transaction';
 		$get_product = $this->product_model->getProduct();
-        $product = [];
         $product[''] = '-- Select Product --';
         foreach($get_product as $key){
             $product[$key['product_id']] = $key['product_name'];
@@ -111,10 +110,6 @@ class Transaction extends BaseController
 					'trx_date'		=> $this->request->getPost('transaction_date'),
 				);
 
-				$final_stock = $product_stock - $trx_stock;
-
-				$this->product_model->updateProduct(['product_stock' => $final_stock], $product_id);
-
 				if(!empty($id)){
 					$simpan = $this->transaction_model->updateTransaction($data, $id);
 				}else{
@@ -145,6 +140,19 @@ class Transaction extends BaseController
 		{
 			return json_encode(TRUE);
 		}
+		return json_encode(FALSE);
+	}
+
+	public function get_price_product()
+	{
+		if ($this->request->isAJAX()) {
+			$id = $this->request->getGet('id');
+			if($id)
+			{
+				$data = $this->product_model->getProduct($id);
+				return json_encode($data);
+			}
+		}	
 		return json_encode(FALSE);
 	}
 }

@@ -56,7 +56,7 @@
               <label for="inputPassword3" class="col-sm-3 col-form-label">Product</label>
               <div class="col-sm-9">
                 <?php 
-                    echo form_dropdown('product_id', $product, '', ' class="form-control select2" id="trx_product" required=""');
+                    echo form_dropdown('product_id', $product, '', ' class="form-control" id="trx_product" required=""');
                 ?>
               </div>
             </div>

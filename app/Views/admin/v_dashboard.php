@@ -49,7 +49,7 @@
                             <h4>Product Best Seller</h4>
                         </div>
                         <div class="card-body">
-                            <?php echo $best_seller->product_name;?>
+                            <?php echo (isset($best_seller->product_name)) ? $best_seller->product_name:'Belum Ada' ;?>
                         </div>
                         </div>
                     </div>

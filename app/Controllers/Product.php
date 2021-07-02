@@ -25,8 +25,7 @@ class Product extends BaseController
 	{
 		$data['sidebar'] = 'product';
         $get_category = $this->category_model->getCategory()->getResultArray();
-        $category = [];
-        $category[''] = '-- Select Category --';
+        $category[-1] = '-- Select Category --';
         foreach($get_category as $key){
             $category[$key['category_id']] = $key['category_name'];
         }

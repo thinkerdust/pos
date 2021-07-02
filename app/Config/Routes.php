@@ -61,6 +61,7 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
 	$routes->post('transaction/store', 'Transaction::store');
 	$routes->get('transaction/edit/(:num)', 'Transaction::edit/$1');
 	$routes->get('transaction/delete/(:num)', 'Transaction::delete/$1');
+	$routes->get('transaction/get-price', 'Transaction::get_price_product');
 });
 
 /*

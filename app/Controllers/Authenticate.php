@@ -73,6 +73,7 @@ class Authenticate extends BaseController
             return redirect()->to('/login');
         }else{
             $data['validation'] = $this->validator;
+            $data['title'] = 'Register - POS';
             return view('auth/v_register', $data);
         }
     }

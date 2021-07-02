@@ -59,7 +59,7 @@
               <label for="inputPassword3" class="col-sm-3 col-form-label">Category</label>
               <div class="col-sm-9">
               <?php 
-								echo form_dropdown('category_id', $category, '', ' class="form-control select2" id="pro_category" required=""');
+								echo form_dropdown('category_id', $category, '-1', ' class="form-control" id="pro_category" required=""');
 							?>
               </div>
             </div>

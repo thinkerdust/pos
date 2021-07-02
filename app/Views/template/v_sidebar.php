@@ -1,7 +1,7 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
-        <a href="dashboard">Point Of Sale</a>
+        <a href="dashboard">Point Of Sales</a>
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
         <a href="dashboard">POS</a>

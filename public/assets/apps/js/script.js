@@ -1,6 +1,14 @@
 // Global
 $(".select2").select2();
 
+$("#pro_category").select2({
+    dropdownParent: $('#mdladdproduct')
+});
+
+$("#trx_product").select2({
+    dropdownParent: $('#mdladdtransaction')
+});
+
 $('.harga').keyup(function(e) {
     if (/^0/.test(this.value)) {
         this.value = this.value.replace(/^0/, "")
@@ -165,7 +173,7 @@ function saveCategory(){
         cUrl = 'category/update/'+id;
     }
 
-    if(name && status){
+    if(name && status && kode){
         Swal.fire({
             title: "Do you want to save the changes?",
             type: "warning",
@@ -263,7 +271,20 @@ const TableProduct = $("#tb_product").DataTable({
 
 TableProduct.buttons().container().appendTo( '#tb_product .col-md-6:eq(0)' );
 
+function clear_form_product(){
+    $('#pro_id').val('');
+    $("input[type='file']").trigger('change');
+    $('#pro_category').val('-1').change();
+    $('#pro_name').val('');
+    $('#pro_price').val('');
+    $('#pro_sku').val('');
+    $('#pro_desc').val('');
+    $('#pro_stock').val('');
+    $("input[type='radio']").prop('checked', false);
+}
+
 function addProduct(){
+    clear_form_product();
     $('#mdladdproduct').modal({show:true, backdrop: 'static'});
     $('#mdlproducttitle').text('Add Product');
     $('#form_pro_sku').attr('hidden', true);
@@ -326,7 +347,7 @@ $("#formProduct").submit(function (event) {
                         'success'
                     )
                   $("#formProduct")[0].reset();
-                  $("input[type='file']").trigger('change');
+                  clear_form_product();
                   $('#mdladdproduct').modal('hide');
                   TableProduct.ajax.reload();
                 } else {
@@ -418,8 +439,17 @@ const TableTransaction = $("#tb_transaction").DataTable({
 
 TableTransaction.buttons().container().appendTo( '#tb_transaction .col-md-6:eq(0)' );
 
+function clear_form_transaction()
+{
+    $('#trx_id').val('');
+    $('#trx_product').val('').change();
+    $('#trx_qty').val('');
+    $('#trx_date').val('');
+}
+
 function addTransaction()
 {
+    clear_form_transaction();
     $('#mdladdtransaction').modal({show:true, backdrop: 'static'});
     $('#mdltransactiontitle').text('Add Transaction');
 }
@@ -452,6 +482,7 @@ $("#formTransaction").submit(function (event) {
                         'success'
                     )
                   $("#formTransaction")[0].reset();
+                  clear_form_transaction();
                   $('#mdladdtransaction').modal('hide');
                   TableTransaction.ajax.reload();
                 } else {
@@ -534,11 +565,17 @@ function deleteTransaction(id)
 $('#trx_product').change(function() {
     let id = $(this).val();
     $.ajax({
-        url: 'product/edit/'+id,
+        url: 'transaction/get-price',
         type: 'get',
+        data: {id:id},
         dataType: 'JSON',
         success: function(data){
-            $('#trx_price').val('Rp. ' +  new Intl.NumberFormat(['ban', 'id']).format(data['product_price']));
+            if(data)
+            {
+                $('#trx_price').val('Rp. ' +  new Intl.NumberFormat(['ban', 'id']).format(data['product_price']));
+            }else{
+                $('#trx_price').val('');
+            }
         }
     })
 })
